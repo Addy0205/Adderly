@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>¿Quieres ser mi enamorada?</title>
+    <style>
+        body {
+            background-image: url('https://images.unsplash.com/photo-1474552226712-ac0f0961a954?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80'); /* Cambiar a la ruta de tu imagen */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: Arial, sans-serif;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            transition: background-color 0.5s;
+        }
+        .container {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            position: relative;
+        }
+        .button {
+            margin: 10px;
+        }
+        #noBtn {
+            cursor: pointer;
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        #heartsContainer {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: none;
+        }
+        .heart {
+            font-size: 36px;
+            color: red;
+            opacity: 0;
+            animation: fadeAndMove 2s forwards;
+        }
+        @keyframes fadeAndMove {
+            0% {
+                opacity: 0;
+                transform: translateY(0);
+            }
+            50% {
+                opacity: 1;
+                transform: translateY(-50px);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>¿Quieres ser mi enamorada?</h1>
+        <button class="button" id="siBtn">Sí</button>
+        <button class="button" id="noBtn">No</button>
+        <div id="heartsContainer"></div>
+    </div>
+
+    <script>
+        const siBtn = document.getElementById('siBtn');
+        const noBtn = document.getElementById('noBtn');
+        const heartsContainer = document.getElementById('heartsContainer');
+
+        siBtn.addEventListener('click', () => {
+            alert('Se ha enviado la respuesta a tu enamorado');
+            showHearts();
+            playHeartSound();
+        });
+
+        noBtn.addEventListener('click', () => {
+            const randomX = Math.random() * (window.innerWidth - noBtn.clientWidth);
+            const randomY = Math.random() * (window.innerHeight - noBtn.clientHeight);
+            noBtn.style.left = randomX + 'px';
+            noBtn.style.top = randomY + 'px';
+        });
+
+        function showHearts() {
+            heartsContainer.innerHTML = '';
+            for (let i = 0; i < 5; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.innerHTML = '&#10084;';
+                heartsContainer.appendChild(heart);
+            }
+            heartsContainer.style.display = 'block';
+        }
+
+        function playHeartSound() {
+            const audio = new Audio('Chino & Nacho - Me Voy Enamorando ft. Farruko (Remix) (Official Music Video.MP3'); // Cambia la ruta al archivo MP3
+            audio.play();
+        }
+    </script>
+</body>
+</html>
